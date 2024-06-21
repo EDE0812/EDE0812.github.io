@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subclases</title>
+
+</head>
+
+<body>
+    <button onclick="mostrarFutbolistas()"> Mostrar Futbolista</button>
+    <ul id='listafutbolistas'></ul>
+    <script>
+        class Futbolista {
+            constructor(nombre, apellido, edad, dorsal, equipo) {
+                this.nombre = nombre;
+                this.apellido = apellido;
+                this.edad = edad;
+                this.dorsal = dorsal;
+                this.equipo = equipo;
+            }
+            informacion(){
+                return `${nombre} - ${apellido} - ${edad} \
+                - ${dorsal} - ${equipo}`;
+            }
+        }
+
+        class Futbolista1 extends Futbolista {
+            constructor(nombre, apellido, edad, dorsal, equipo, posicion) {
+                super(nombre, apellido, edad, dorsal, equipo);
+                this.posicion = posicion;
+            }
+
+            /*get posicion(){
+                return this._posicion;
+            }
+
+            set posicion(nuevaposicion){
+                this._posicion = nuevaposicion;
+            }*/
+
+            informacion(){
+                return `${this.nombre} - ${this.apellido} - ${this.edad} - ${this.dorsal} - ${this.equipo} - ${this.posicion}`;
+            }
+        }
+
+        class Futbolista2 extends Futbolista {
+            constructor (nombre, apellido, edad, dorsal, equipo, sexo){
+                super(nombre, apellido, edad, dorsal, equipo);
+                this.sexo = sexo;
+            } 
+            informacion(){
+                return `${this.nombre} - ${this.apellido} - ${this.edad} - ${this.dorsal} - ${this.equipo} - ${this.sexo}`;
+            }
+        }
+
+        let futbolero1 = new Futbolista1('Ede','Nina', 23, 43,'Real Madrid', 'Delantero');
+        let futbolero2 = new Futbolista2('Marco', 'Antonio', 45, 56, 'Bayern', 'Masculino');
+
+        let futbolistas = [futbolero1, futbolero2];
+
+        function mostrarFutbolistas(){
+            let lista1 = document.getElementById('listafutbolistas');
+
+            for(let futbolista of futbolistas){
+                let item = document.createElement('li');
+                item.innerText = futbolista.informacion();
+                lista1.appendChild(item);
+                //console.log(lista);
+                console.log(item.innerText);
+            }
+        }
+
+    </script>
+</body>
+
+</html>

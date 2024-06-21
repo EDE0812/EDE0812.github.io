@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON</title>
+</head>
+<body>
+    <ul id="persona1"></ul>
+    <script>
+        /*let xhr = new XMLHttpRequest();
+        xhr.open("GET", "https://pokeapi.co/api/v2/pokemon/ditto", true);
+        xhr.responseType = 'json';
+        xhr.onload = function(){
+            if (xhr.status == 200){
+                let v = document.getElementById('persona1');
+                let b = xhr.response;
+                let item;
+                for (let index = 0; index < b.abilities.length; index++) {
+                    let element = b.abilities[index].ability.name;
+                    item = document.createElement('li');
+                    item.innerText =  element;
+                    v.appendChild(item);            
+                    // console.log(element);
+                }
+                // v.textContent = b.abilities[1].ability.name;
+                // console.log(v.textContent);
+            }else{
+                // No se hace nada aun 
+            }
+        }
+        xhr.send();*/
+        let datosjson;
+        let item;
+        let v = document.getElementById('persona1');
+        fetch('https://pokeapi.co/api/v2/pokemon/ditto')
+            .then(res => res.json())
+            .then((salida) => {
+                datosjson = salida;
+                for (let index = 0; index < datosjson.abilities.length; index++) {
+                    let element = datosjson.abilities[index].ability.name;
+                    item = document.createElement('li');
+                    item.innerText =  element;
+                    v.appendChild(item);            
+                    // console.log(element);
+                }
+            })
+            .catch(function(error){alert(error)});
+    </script>
+</body>
+</html>

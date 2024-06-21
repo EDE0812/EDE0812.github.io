@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promesas</title>
+</head>
+
+<body>
+    <div id="mostrar"></div>
+    <script>
+        /*let miPromesa = new Promise(function (resolve, reject) {
+            setTimeout(() => {
+                let error = true;
+                if (error) {
+                    reject('LA PROMESA HA FALLADO');
+                } else {
+                    resolve('LA PROMESA SE HA CUMPLIDO');
+                }
+            });
+        });
+        miPromesa.then(function (resultado) {
+            console.log(resultado);
+        }).catch(function(error){
+            console.log(error);
+        })*/
+        /*
+        let promesa1 = new Promise(function(resolve, reject){
+            setTimeout(resolve, 5000, 'SALUDOS A TODOS');
+        });
+        let promesa2 = new Promise(function(resolve, reject){
+            setTimeout(resolve, 7000, 'OTRO SALUDO');
+        });
+        Promise.all([promesa1,promesa2]).then(function(valores){
+            console.log(valores[0], valores[1]);
+        });
+        console.log('EL CODIGO SIGUE SU CURSO')
+        */
+        function obtenerUsuarios() {
+            return new Promise(function (resolve, reject) {
+                let xhr = new XMLHttpRequest();
+                xhr.open('GET', 'https://jsonplaceholder.typicode.com/users', true);
+                xhr.onload = function () {
+                    if (xhr.status = 200) {
+                        resolve(JSON.parse(xhr.response));
+                    } else {
+                        reject(xhr.statusText);
+                    }
+                }
+                xhr.send();
+            })
+        }
+
+        obtenerUsuarios()
+            .then(function (usuarios) {
+                for (let index = 0; index < usuarios.length; index++) {
+                    let x = document.getElementById('mostrar');
+                    let p = document.createElement('p');
+                    console.log(usuarios[index].name);
+                    p.id = index;
+                    p.innerText = usuarios[index].name;
+                    x.appendChild(p);                 
+                }
+                
+            })
+            .catch(function (error) {
+                console.error(error);
+            })
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    Ir a wikipedia.com
+    <input type="button" onclick="redireccionar()" value="Ir">
+    <script>
+        function redireccionar() {
+            if (window.confirm('Desea salir de la pagina?')) {
+                /*window.location = 'https://wikipedia.com';*/
+                window.open('https://wikipedia.com','','width=400, height=250')
+            }
+        }
+        function ventana() {
+            let ventana = open('', '', 'width=400, height=250');
+            ventana.document.write('Soy otra ventana de Página web');
+        }
+
+    </script>
+</body>
+
+</html>

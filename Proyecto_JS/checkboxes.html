@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</head>
+<body>
+    <h4>Que lenguajes conoces?</h4>
+    <form action="">
+        <input type="checkbox" id="check1">Java<br>
+        <input type="checkbox" id="check2">C++<br>
+        <input type="checkbox" id="check3">C#<br>
+        <input type="checkbox" id="check4">Pyhton<br>
+        <input type="checkbox" id="check5">JavaScript<br><br>
+        <input type="button" value="Confirmar" onclick="seleccion()">
+    </form>
+    <script>
+        function seleccion(){
+            let cantidad = 0;
+            let plural = '';
+
+            if (document.getElementById('check1').checked){
+                cantidad++
+            }
+            if (document.getElementById('check2').checked){
+                cantidad++
+            }
+            if (document.getElementById('check3').checked){
+                cantidad++
+            }
+            if (document.getElementById('check4').checked){
+                cantidad++
+            }
+            if (document.getElementById('check5').checked){
+                cantidad++
+            }
+
+            if (cantidad == 0){
+                swal('No conoces ni un Lenguaje');
+            }else if(cantidad > 1){
+                plural = 's';
+                swal('Conoces: '+ cantidad + ' lenguaje' + plural);
+            }else{
+                plural = '';
+                swal('Conoces: '+ cantidad + ' lenguaje' + plural);                
+            }
+        }
+    </script>
+</body>
+</html>
